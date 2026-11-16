@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Navalha de Ouro</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Confere o formulário no navegador. Devolve false para cancelar o envio.
+        function validarFormulario() {
+            let nome = document.querySelector("#campoNome").value;
+            let email = document.querySelector("#campoEmail").value;
+            let telefone = document.querySelector("#campoTelefone").value;
+            let mensagem = document.querySelector("#campoMensagem").value;
+
+            if (nome === "" || email === "" || telefone === "" || mensagem === "") {
+                alert("Preencha todos os campos.");
+                return false;
+            }
+            if (!email.includes("@")) {
+                alert("O e-mail precisa ter @.");
+                return false;
+            }
+            if (isNaN(telefone) || telefone.length < 10 || telefone.length > 11) {
+                alert("Digite o telefone só com números, com DDD.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>💈 Barbearia Navalha de Ouro</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="catalogo.php">Catálogo</a>
+            <a href="agendar.php">Agendar</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Fale com a gente</h2>
+        <p>Corte na régua, barba na navalha. Mande uma mensagem para marcar o seu horário.</p>
+
+        <form action="enviarMensagem.php" method="post" onsubmit="return validarFormulario()">
+            <label>Seu nome:</label>
+            <input type="text" id="campoNome" name="nome">
+            <label>E-mail:</label>
+            <input type="text" id="campoEmail" name="email">
+            <label>Telefone (só números, com DDD):</label>
+            <input type="text" id="campoTelefone" name="telefone">
+            <label>Mensagem:</label>
+            <input type="text" id="campoMensagem" name="mensagem">
+            <button type="submit">Enviar mensagem</button>
+        </form>
+    </main>
+</body>
+</html>
